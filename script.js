@@ -72,27 +72,33 @@ function updateResult(result) {
   }
 }
 
+function clearVars() {
+  firstNumber = "";
+  secondNumber = "";
+  operator = "";
+}
+
 function addButtonEventListeners() {
   const buttonsNumber = document.querySelectorAll(".number");
   const buttonsOperators = document.querySelectorAll(".operators");
 
   buttonsNumber.forEach((button) => {
     button.addEventListener("click", () => {
-      if (firstNumber === "") {
-        firstNumber = button.innerText;
-      } else if (secondNumber === "") {
-        secondNumber = button.innerText;
+      if (operator === "") {
+        firstNumber += button.innerText;
+      } else {
+        secondNumber += button.innerText;
       }
-      alert(button.innerText);
       updateResult();
     });
   });
 
   buttonsOperators.forEach((button) => {
     button.addEventListener("click", () => {
-      operator = button.innerText;
-      alert(button.innerText);
-      updateResult();
+      if (firstNumber !== "") {
+        operator = button.innerText;
+        updateResult();
+      }
     });
   });
 
@@ -100,13 +106,12 @@ function addButtonEventListeners() {
   equalButton.addEventListener("click", () => {
     let result = operate(firstNumber, secondNumber, operator);
     updateResult(result);
+    clearVars();
   });
 
   const clearButton = document.getElementById("clear");
   clearButton.addEventListener("click", () => {
-    firstNumber = "";
-    secondNumber = "";
-    operator = "";
+    clearVars();
     updateResult();
   });
 }
