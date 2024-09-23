@@ -60,3 +60,11 @@ function operate(firstNumber, secondNumber, operator) {
       return "Error occurred!";
   }
 }
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    alert(button.id);
+  });
+});
