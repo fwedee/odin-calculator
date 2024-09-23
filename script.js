@@ -1,6 +1,6 @@
-var firstNumber;
-var operator;
-var secondNumber;
+var firstNumber = "";
+var operator = "";
+var secondNumber = "";
 
 function add(...numbers) {
   let sum = 0;
@@ -61,10 +61,37 @@ function operate(firstNumber, secondNumber, operator) {
   }
 }
 
-const buttons = document.querySelectorAll("button");
+function addButtonEventListeners() {
+  const buttonsNumber = document.querySelectorAll(".number");
+  const buttonsOperators = document.querySelectorAll(".operators");
 
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    alert(button.id);
+  buttonsNumber.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (firstNumber === "") {
+        firstNumber = button.innerText;
+      } else if (secondNumber === "") {
+        secondNumber = button.innerText;
+      }
+      alert(button.innerText);
+    });
   });
-});
+
+  buttonsOperators.forEach((button) => {
+    button.addEventListener("click", () => {
+      operator = button.innerText;
+      alert(button.innerText);
+    });
+  });
+
+  const equalButton = document.getElementById("=");
+  equalButton.addEventListener("click", () => {
+    alert(equalButton.innerText);
+  });
+
+  const clearButton = document.getElementById("clear");
+  clearButton.addEventListener("click", () => {
+    alert(clearButton.innerText);
+  });
+}
+
+addButtonEventListeners();
