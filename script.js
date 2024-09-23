@@ -1,3 +1,7 @@
+var firstNumber;
+var operator;
+var secondNumber;
+
 function add(...numbers) {
   let sum = 0;
   for (let number of numbers) sum += number;
@@ -39,4 +43,20 @@ function divide(...numbers) {
     }
   }
   return quotient;
+}
+
+function operate(firstNumber, secondNumber, operator) {
+  switch (operator) {
+    case "+":
+      return add(firstNumber, secondNumber);
+    case "-":
+      return subtract(firstNumber, secondNumber);
+    case "*":
+      return multiply(firstNumber, secondNumber);
+    case "/":
+      return divide(firstNumber, secondNumber);
+
+    default:
+      return "Error occurred!";
+  }
 }
