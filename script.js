@@ -46,6 +46,8 @@ function divide(...numbers) {
 }
 
 function operate(firstNumber, secondNumber, operator) {
+  firstNumber = Number(firstNumber);
+  secondNumber = Number(secondNumber);
   switch (operator) {
     case "+":
       return add(firstNumber, secondNumber);
@@ -61,6 +63,15 @@ function operate(firstNumber, secondNumber, operator) {
   }
 }
 
+function updateResult(result) {
+  const resultDiv = document.querySelector(".result");
+  if (typeof result !== "undefined") {
+    resultDiv.innerText = `Result: ${firstNumber} ${operator} ${secondNumber} = ${result}`;
+  } else {
+    resultDiv.innerText = `Result: ${firstNumber} ${operator} ${secondNumber}`;
+  }
+}
+
 function addButtonEventListeners() {
   const buttonsNumber = document.querySelectorAll(".number");
   const buttonsOperators = document.querySelectorAll(".operators");
@@ -73,6 +84,7 @@ function addButtonEventListeners() {
         secondNumber = button.innerText;
       }
       alert(button.innerText);
+      updateResult();
     });
   });
 
@@ -80,17 +92,22 @@ function addButtonEventListeners() {
     button.addEventListener("click", () => {
       operator = button.innerText;
       alert(button.innerText);
+      updateResult();
     });
   });
 
   const equalButton = document.getElementById("=");
   equalButton.addEventListener("click", () => {
-    alert(equalButton.innerText);
+    let result = operate(firstNumber, secondNumber, operator);
+    updateResult(result);
   });
 
   const clearButton = document.getElementById("clear");
   clearButton.addEventListener("click", () => {
-    alert(clearButton.innerText);
+    firstNumber = "";
+    secondNumber = "";
+    operator = "";
+    updateResult();
   });
 }
 
