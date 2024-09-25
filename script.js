@@ -71,7 +71,7 @@ function operate(firstNumber, secondNumber, operator) {
 
 function updateResult() {
   const resultDiv = document.querySelector(".result");
-  resultDiv.innerText = `Result: ${firstNumber} ${operator} ${secondNumber}`;
+  resultDiv.innerText = `${firstNumber} ${operator} ${secondNumber}`;
 }
 
 function clearVars() {
@@ -105,7 +105,7 @@ function addButtonEventListeners() {
     });
   });
 
-  const equalButton = document.getElementById("=");
+  const equalButton = document.getElementById("equal");
   equalButton.addEventListener("click", () => {
     if (firstNumber !== "" && operator !== "" && secondNumber !== "") {
       let result = operate(firstNumber, secondNumber, operator);
@@ -121,7 +121,7 @@ function addButtonEventListeners() {
     updateResult();
   });
 
-  const commaButton = document.getElementById(".");
+  const commaButton = document.getElementById("dot");
   commaButton.addEventListener("click", () => {
     if (firstNumber !== "" && operator === "" && !pressed) {
       firstNumber += commaButton.innerText;
