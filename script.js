@@ -133,6 +133,20 @@ function addButtonEventListeners() {
       updateResult();
     }
   });
+
+  const goBackButton = document.getElementById("goBack");
+  goBackButton.addEventListener("click", () => {
+    if (firstNumber !== "" && operator !== "" && secondNumber !== "") {
+      secondNumber = "";
+      pressed = false;
+    } else if (firstNumber !== "" && operator !== "") {
+      operator = "";
+    } else {
+      firstNumber = "";
+      pressed = false;
+    }
+    updateResult();
+  });
 }
 
 addButtonEventListeners();
