@@ -106,9 +106,11 @@ function addButtonEventListeners() {
 
   const equalButton = document.getElementById("=");
   equalButton.addEventListener("click", () => {
-    let result = operate(firstNumber, secondNumber, operator);
-    updateResult(result);
-    clearVars();
+    if (firstNumber !== "" && operator !== "" && secondNumber !== "") {
+      let result = operate(firstNumber, secondNumber, operator);
+      updateResult(result);
+      clearVars();
+    }
   });
 
   const clearButton = document.getElementById("clear");
