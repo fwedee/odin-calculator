@@ -31,7 +31,7 @@ function multiply(...numbers) {
     }
   }
 
-  return product.toFixed(4);
+  return product;
 }
 
 function divide(...numbers) {
@@ -43,21 +43,26 @@ function divide(...numbers) {
       quotient /= numbers[i];
     }
   }
-  return quotient.toFixed(4);
+  return quotient;
+}
+
+function roundNumber(num, dec) {
+  return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
 }
 
 function operate(firstNumber, secondNumber, operator) {
   firstNumber = Number(firstNumber);
   secondNumber = Number(secondNumber);
+  let decimalMax = 8;
   switch (operator) {
     case "+":
-      return add(firstNumber, secondNumber);
+      return roundNumber(add(firstNumber, secondNumber), decimalMax);
     case "-":
-      return subtract(firstNumber, secondNumber);
+      return roundNumber(subtract(firstNumber, secondNumber), decimalMax);
     case "*":
-      return multiply(firstNumber, secondNumber);
+      return roundNumber(multiply(firstNumber, secondNumber), decimalMax);
     case "/":
-      return divide(firstNumber, secondNumber);
+      return roundNumber(divide(firstNumber, secondNumber), decimalMax);
 
     default:
       return "Error occurred!";
