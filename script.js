@@ -69,13 +69,9 @@ function operate(firstNumber, secondNumber, operator) {
   }
 }
 
-function updateResult(result) {
+function updateResult() {
   const resultDiv = document.querySelector(".result");
-  if (typeof result !== "undefined") {
-    resultDiv.innerText = `Result: ${firstNumber} ${operator} ${secondNumber} = ${result}`;
-  } else {
-    resultDiv.innerText = `Result: ${firstNumber} ${operator} ${secondNumber}`;
-  }
+  resultDiv.innerText = `Result: ${firstNumber} ${operator} ${secondNumber}`;
 }
 
 function clearVars() {
@@ -113,8 +109,9 @@ function addButtonEventListeners() {
   equalButton.addEventListener("click", () => {
     if (firstNumber !== "" && operator !== "" && secondNumber !== "") {
       let result = operate(firstNumber, secondNumber, operator);
-      updateResult(result);
       clearVars();
+      firstNumber = result;
+      updateResult();
     }
   });
 
