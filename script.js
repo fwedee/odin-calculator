@@ -1,6 +1,7 @@
 var firstNumber = "";
 var operator = "";
 var secondNumber = "";
+var pressed = false;
 
 function add(...numbers) {
   let sum = 0;
@@ -30,7 +31,7 @@ function multiply(...numbers) {
     }
   }
 
-  return product;
+  return product.toFixed(4);
 }
 
 function divide(...numbers) {
@@ -42,7 +43,7 @@ function divide(...numbers) {
       quotient /= numbers[i];
     }
   }
-  return quotient;
+  return quotient.toFixed(4);
 }
 
 function operate(firstNumber, secondNumber, operator) {
@@ -95,8 +96,9 @@ function addButtonEventListeners() {
 
   buttonsOperators.forEach((button) => {
     button.addEventListener("click", () => {
-      if (firstNumber !== "") {
+      if (firstNumber !== "" && secondNumber === "") {
         operator = button.innerText;
+        pressed = false;
         updateResult();
       }
     });
@@ -113,6 +115,19 @@ function addButtonEventListeners() {
   clearButton.addEventListener("click", () => {
     clearVars();
     updateResult();
+  });
+
+  const commaButton = document.getElementById(".");
+  commaButton.addEventListener("click", () => {
+    if (firstNumber !== "" && operator === "" && !pressed) {
+      firstNumber += commaButton.innerText;
+      pressed = true;
+      updateResult();
+    } else if (secondNumber !== "" && !pressed) {
+      secondNumber += commaButton.innerText;
+      pressed = true;
+      updateResult();
+    }
   });
 }
 
