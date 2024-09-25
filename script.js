@@ -137,12 +137,12 @@ function addButtonEventListeners() {
   const goBackButton = document.getElementById("goBack");
   goBackButton.addEventListener("click", () => {
     if (firstNumber !== "" && operator !== "" && secondNumber !== "") {
-      secondNumber = "";
+      secondNumber = secondNumber.slice(0, -1);
       pressed = false;
     } else if (firstNumber !== "" && operator !== "") {
       operator = "";
     } else {
-      firstNumber = "";
+      firstNumber = firstNumber.slice(0, -1);
       pressed = false;
     }
     updateResult();
